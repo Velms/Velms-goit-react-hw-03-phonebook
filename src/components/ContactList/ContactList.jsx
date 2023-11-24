@@ -1,26 +1,21 @@
 import s from './ContactList.module.css';
 import PropTypes from 'prop-types';
+import ContactItem from '../ContactItem/ContactItem';
+// import Notification from 'components/Notification';
 
 const ContactList = ({ contacts, onDeleteContact }) => (
   <ul className={s.list}>
-    {contacts.map(({ id, name, number }) => (
-      <li key={id} className={s.item}>
-        <p className={s.contact}>
-          {name}............
-          {number}
-        </p>
-        <button
-          className={s.btn}
-          type="submit"
-          onClick={() => onDeleteContact(id)}
-        >
-          Delete
-        </button>
-      </li>
+    {contacts.map(contacts => (
+      <ContactItem
+        key={contacts.id}
+        id={contacts.id}
+        name={contacts.name}
+        number={contacts.number}
+        onDeleteContact={onDeleteContact}
+      />
     ))}
   </ul>
 );
-
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
